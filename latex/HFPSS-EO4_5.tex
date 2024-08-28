@@ -1,0 +1,125 @@
+%% Name: HFPSS $EO(5,1)$
+%% Description: Homotopy fixed point spectral sequence for $E_{4}^{hC_5\rtimes C_{16}}$ with $p=5$
+%%
+%%    This is the homotopy fixed point spectral sequence for EO_2 at the prime 3. The maximal finite subgroup of the Morava stabilizer for E_{p-1} is
+%%    of size 2p(p-1)^2 = 24, and so there is a norm element v in degree 24. There's also a bunch of trace classes on the zero line, but the trace map
+%%    E_* --> H^*( G ; E_* ) is induced by the trace map E_n --> EO_n, so all of these classes are permanent cycles. They are hard to compute and we don't draw them.
+%%    We also have classes \alpha and \beta coming from the stabilizer action, which are the images of \alpha_1 and \beta_1 in the ANSS.
+%%    By looking at cobar representatives, we can see that v*\beta_1 is the image of \beta_{3/3}.
+%%    Thus, the Toda differential in the ANSS d_3(\beta_{3/3}) = \alpha \beta^3 forces also that d_3(v) = \alpha \beta^2. Likewise, the Toda "Kudo" differential
+%%    d_9( \alpha \beta_{3/3}^2 ) = \beta^7 gives us upon dividing by \beta twice that d_9(\alpha v^2) = \beta^5. At this point, there are no possible differentials.
+%%    We see that v^3 survives so EO_n* is 72 = 2p^2(p-1)^2 periodic.  The picture is exactly the same at other odd primes. At 2, this degenerates to the
+%%    HFPSS for KO = KU^{hC_2} (see example_KUHFPSS).
+%%
+
+\documentclass{spectralsequence-example}
+\sseqset{Zclass/.style={rectangle}, pZclass/.style={rectangle,fill=none}}
+\begin{document}
+\begin{sseqdata}[name=EO(4),Adams grading,
+    y range={0}{40},x range={0}{1600},
+    xscale=0.015,
+    yscale=0.4, x tick step=100, y tick step=5,
+    grid=go,
+    classes={fill, tooltip={(\xcoord,\ycoord)},inner sep=1.4pt},
+    x grid step=50,
+    y grid step=2,
+    title=Page \page
+]
+
+\NewSseqCommand \aclass {} {
+    \class(\lastx+7,\lasty+1)
+    \structline
+}
+\NewSseqCommand \bclass {} {
+    \class(\lastx1+38,\lasty1+2)
+}
+
+\NewSseqCommand \pushbclass {} {
+    \pushstack(\lastx+38,\lasty+2)
+}
+
+
+\foreach \v in {0,...,9}{
+    \class[Zclass](160*\v,0)
+    \aclass
+    \ifnum \v =0\relax
+        \def\extraiterations{33}
+    \else
+        \ifnum\v<6\relax
+            \def\extraiterations{9}
+        \else
+            \def\extraiterations{0}
+        \fi
+    \fi
+    \DoUntilOutOfBoundsThenNMore { \extraiterations } {
+        \bclass\structline(\lastclass2)
+        \aclass\structline(\lastclass2)
+    }
+    \ifnum \v = \numexpr\v/5*5\relax\else
+        \pushstack(\lastclass1)
+	\d9
+	\replaceclass[pZclass]
+        \DoUntilOutOfBounds{
+            \pushbclass
+            \d9
+        }
+
+    \fi
+}
+
+\pushstack(647,1)
+\DoUntilOutOfBounds{
+    \d33
+    \pushbclass
+}
+
+\pushstack(1447,1)
+\Do{5}{
+    \d33
+    \pushbclass
+}
+
+
+
+\end{sseqdata}
+\centering
+
+\printpage[name=EO(4),page=9]
+
+\printpage[name=EO(4),page=33]
+
+\begin{sseqpage}[name=EO(4),page=34, title=Page $\infty$,keep changes]
+\classoptions["a" left](7,1)
+\classoptions["b" below](38,2)
+\classoptions["v^5" left](800,0)
+
+
+\foreach\v in {0,5}{
+    \foreach \n in {0,...,3}{
+        \structline[thin,blue](167+38*\n+160*\v,1+2*\n)(190+38*\n+160*\v,10+2*\n)
+    }
+    \foreach \n in {0,...,3}{
+        \structline[thin,purple](327+38*\n+160*\v,1+2*\n)(342+38*\n+160*\v,18+2*\n)
+    }
+    \foreach \n in {0,...,3}{
+        \structline[thin](487+38*\n+160*\v,1+2*\n)(494+38*\n+160*\v,26+2*\n)
+    }
+}
+\end{sseqpage}
+
+\newpage
+
+\begin{sseqpage}[name=EO(4),page=34,x range={0}{650}, y range={0}{32}, xscale=3, yscale=1.3]
+\classoptions["{\left<a,a,b^4\right>}" {above left,pin}](167,1)
+\classoptions["{\left<a,a,a,b^8\right>}" {above left,pin}](327,1)
+\classoptions["{\left<a,a,a,a,b^{12}\right>}" {above left,pin}](487,1)
+\classoptions["{\left<a,a,a,x_{167}\right>}" {above left,pin}](190,10)
+\classoptions["{\left<a,a,x_{327}\right>}" {above left,pin}](342,18)
+\classoptions["ax_{487}" {above left,pin}](494,26)
+\classoptions["pv" right](160,0)
+\foreach \v in {2,...,4}{
+	\classoptions["pv^\v" right](160*\v,0)
+}
+\end{sseqpage}
+
+\end{document} 

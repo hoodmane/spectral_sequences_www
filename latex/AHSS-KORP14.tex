@@ -1,0 +1,134 @@
+%% Name: AHSS $KO^*\mathbb{RP}^{14}$
+%% Description: Atiyah Hirzebruch spectral sequence computing $KO^*\mathbb{RP}^{14}$
+
+\documentclass{spectralsequence-example}
+\NewSseqCommand \KOstar {m}{
+    \foreach \x in {-2,...,3}{
+	\begin{scope}[xshift = -#1,xshift=8*\x, yshift = #1, class name prefix={b^{\x}[0]}]
+	    \class[Zclass,name=1](0,0)
+	    \class[name= e](1,0)
+	    \class[name= e^2](2,0)
+	    \structline(1)(e)
+	    \structline(e)(e^2)
+	    \class[pZclass,name=u](4,0)
+    \end{scope}
+    }
+}
+
+\NewSseqCommand \KOpcell {m}{
+    \foreach \x in {-2,...,3}{
+    \begin{scope}[xshift=-#1,yshift=#1,class name prefix=b^{\x}]
+        \d1([0])
+        \d1( u[0])
+        \replaceclass[name=[1]]([1])
+        \structline([1])( e[1])
+        \replaceclass[name=u[1]]( u[1])
+        \structline[page=2]( e[0])( e^2[1])
+        \structline[page=2]( e^2[0])( u[1])
+    \end{scope}
+    }
+}
+
+\NewSseqCommand \KOalphacell {m}{
+    \foreach \x in {-2,...,3}{
+    \begin{scope}[xshift=-#1,yshift=#1,class name prefix=b^{\x}]
+        \DrawIfValidDifferential2([0])
+        \d2(e[0])
+        \DrawIfValidDifferential3(e^2[0])
+    \end{scope}
+    }
+}
+
+\sseqset{
+	classes=fill, degree={-1}{#1}, class name handler=\SseqAHSSNameHandler,
+	Zclass/.sseq style={rectangle, inner sep=2.5pt},
+	pZclass/.sseq style = {rectangle,fill=none,inner sep=2.5pt},
+	cell/.sseq style={circle,fill,inner sep=2pt}, alphaedge/.sseq style={bend left=20},pedge/.sseq style={}
+}
+
+\makeatletter
+\NewDocumentCommand\cell {m} {
+    \xdef\lastcell{\the\numexpr#1}
+     \sseq@eval{\@nx\node[background,cell,xshift=-1.5] (c\lastcell) at (\@nx\xmin,\lastcell) {};}
+}
+
+
+\NewDocumentCommand \alphacell {g}{
+	\IfNoValueTF{#1}{
+		\let\thiscell\lastcell
+	}{
+		\edef\thiscell{\the\numexpr#1}
+	}
+	\edef\targetcell{\the\numexpr\thiscell+2}
+	\cell{\targetcell}
+	\sseq@eval{\@nx\draw[background] (c\thiscell) to[alphaedge] (c\targetcell);}
+}
+
+\NewDocumentCommand \pcell {g}{
+	\IfNoValueTF{#1}{
+		\let\thiscell\lastcell
+	}{
+		\edef\thiscell{\the\numexpr#1}
+	}
+	\edef\targetcell{\the\numexpr\thiscell+1}
+	\cell{\targetcell}
+	\sseq@eval{\@nx\draw[background] (c\thiscell) edge[pedge] (c\targetcell);}
+}
+
+\NewDocumentCommand \divpcell {g}{
+	\IfNoValueTF{#1}{
+		\let\thiscell\lastcell
+	}{
+		\def\thiscell{#1}
+	}
+	\edef\targetcell{\the\numexpr\thiscell-1}
+	\cell{\targetcell}
+	\sseq@eval{\@nx\draw[background] (c\targetcell) to[pedge] (c\thiscell);}
+}
+\makeatother
+
+\begin{document}
+
+\begin{sseqdata}[name=KORPinfty,x range={-14}{14}]
+\cell{0}
+\cell{1}
+\foreach \x in {0,1,2}{
+    \pcell
+    \alphacell
+    \divpcell
+    \alphacell
+}
+\pcell
+
+\foreach \n in {0,...,14}{
+    \KOstar{\n}
+}
+
+\foreach \n in {1,3,...,13}{
+    \KOpcell{\n}
+}
+
+\foreach \n in {2,6,...,10,3,7,...,11}{
+    \KOalphacell{\n}
+}
+
+\sseqset{struct lines=dashed, class name prefix=b^{\b}}
+\foreach \b in {-1,0,1}{
+	\structline(e^2[2])(u[4])
+	\structline(u[4])(b[8])
+	\structline(b[8])(be[9])
+	\structline(be^2[10])(bu[12])
+}
+
+\foreach \b in {-2,-1,0,1}{
+	\structline(b[4])(be[5])
+	\structline(be^2[6])(bu[8])
+	\structline(bu[8])(b^2[12])
+	\structline(b^2[12])(b^2e[13])
+}
+\end{sseqdata}
+
+\printpage[name=KORPinfty]
+
+\printpage[name=KORPinfty,page=4]
+\end{document} 

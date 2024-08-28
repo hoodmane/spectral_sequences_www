@@ -1,0 +1,126 @@
+
+%% Description: Adams Spectral Sequence for $S/2$
+
+\documentclass{article}
+\usepackage[landscape,paperheight=15in,margin=0.1in]{geometry}
+\usepackage{spectralsequences}
+
+\begin{document}
+\centering
+
+\NewSseqCommand\twoclass{O{}d()}{
+    \IfNoValueF{#2}{\pushstack(#2)}
+    \class[#1](\lastx,\lasty+1)
+    \structline
+}
+
+\NewSseqCommand\divtwoclass{O{}d()}{
+    \IfNoValueF{#2}{\pushstack(#2)}
+    \class[#1](\lastx,\lasty-1)
+    \structline
+}
+
+
+\NewSseqCommand\etaclass{O{}d()}{
+    \IfNoValueF{#2}{\pushstack(#2)}
+    \class[#1](\lastx+1,\lasty+1)
+    \structline
+}
+\NewSseqCommand\divetaclass{O{}d()}{
+    \IfNoValueF{#2}{\pushstack(#2)}
+    \class[#1](\lastx-1,\lasty-1)
+    \structline
+}
+\NewSseqCommand\etastruct{d()}{
+    \IfNoValueF{#1}{\pushstack(#1)}
+    \structline(\lastx-1,\lasty-1,-1)
+}
+
+
+\NewSseqCommand\nuclass{O{}d()}{
+    \IfNoValueF{#2}{\pushstack(#2)}
+    \class[#1](\lastx+3,\lasty+1)
+    \structline
+}
+\NewSseqCommand\divnuclass{O{}d()}{
+    \IfNoValueF{#2}{\pushstack(#2)}
+    \class[#1](\lastx-3,\lasty-1)
+    \structline
+}
+
+\NewSseqCommand\nustruct{d()}{
+    \IfNoValueF{#1}{\pushstack(#1)}
+    \structline(\lastx-3,\lasty-1,-1)
+}
+
+\NewSseqCommand\lightningbolt {d()}{
+    \IfNoValueF{#1}{\class(#1)}
+    \etaclass\etaclass\divtwoclass\etaclass\etaclass
+}
+
+\begin{sseqdata}[
+    name = ASS-S_2,
+    Adams grading,
+    classes=fill,
+    class labels={above left=0.2em,black},
+    x range={0}{46},
+    y range={0}{23},
+    xscale=0.7,
+    yscale=0.8,
+    differentials = blue,
+    grid = go,
+    run off = -
+]
+
+\lightningbolt(0,0)
+\nuclass(0,0)\nuclass\nuclass[name=ret]
+\divetaclass\divetaclass
+\divtwoclass(ret)\etaclass\divnuclass
+
+\lightningbolt\divnuclass
+\lightningbolt
+
+\DoUntilOutOfBounds{
+    \lightningbolt(\lastx+2,\lasty-3)\divnuclass
+    \lightningbolt\divnuclass
+    \lightningbolt
+}
+
+\class(17,4)
+\DoUntilOutOfBounds{\class(\lastx+2,\lasty+1)}
+
+\foreach \n in {0,...,3 }{
+    \d2(17+8*\n,4+4*\n)
+}
+
+\class(22,5)
+\DoUntilOutOfBounds{\class(\lastx+2,\lasty+1)}
+
+\class(27,5)
+\DoUntilOutOfBounds{\class(\lastx+2,\lasty+1)}
+
+\class(32,6)
+\DoUntilOutOfBounds{\class(\lastx+2,\lasty+1)}
+
+
+\class(14,2)
+
+\class(21,3)
+\divnuclass\divnuclass
+\lightningbolt
+
+\class(19,3)\nuclass
+\class(20,3)\nuclass
+
+\lightningbolt(22,3)
+\divnuclass\divnuclass
+\etaclass\divnuclass\divnuclass
+
+
+
+
+\end{sseqdata}
+
+\printpage[name=ASS-S_2]
+
+\end{document} 
