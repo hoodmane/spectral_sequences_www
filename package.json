@@ -1,0 +1,7 @@
+{
+  "name": "spectral_sequences_www",
+  "private": "true",
+  "scripts": {
+    "build": "exit 0"
+  }
+}
