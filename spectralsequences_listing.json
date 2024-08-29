@@ -89,8 +89,8 @@
   },
   {
     "name": "ASS $\\mathit{tm\\kern-0.05emf}$",
-    "url": "tmf",
-    "description": "Adams spectral sequence $\\mathrm{Ext}(\\mathrm{H}\\mathbb{F}_{2*}\\mathit{tm\\kern-0.05emf}\\,)\\Rightarrow \\pi_*(\\mathit{tm\\kern-0.05emf}\\,)$"
+    "url": "https://dec41.user.srcf.net/sseq/tmf/",
+    "description": "Dexter Chua's Adams spectral sequence $\\mathrm{Ext}(\\mathrm{H}\\mathbb{F}_{2*}\\mathit{tm\\kern-0.05emf}\\,)\\Rightarrow \\pi_*(\\mathit{tm\\kern-0.05emf}\\,)$ (12 Mb download)"
   },
   {
     "name": "Unstable ASS $S_2$",
