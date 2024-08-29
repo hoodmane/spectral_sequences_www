@@ -6,17 +6,25 @@
 const path = import.meta.url.split("/");
 path.pop();
 path.pop();
-path.push("json")
+path.push("json");
 path.push("ASS-S_2.json");
 const toLoad = path.join("/");
 
-Sseq.loadFromServer(toLoad).catch((error) => console.log(error)).then((sseq) => {
+Sseq.loadFromServer(toLoad)
+  .catch((error) => console.log(error))
+  .then((sseq) => {
     sseq._getXOffset = tools.fixed_tower_xOffset.bind(sseq);
     sseq._getYOffset = (n) => n.c.y_offset || 0;
     window.sseq = sseq;
-    sseq.getClassesInDegree(30,2)[0].edges[2].delete();
-    sseq.getClassesInDegree(58,8)[0].edges[2].delete();
-    sseq.addExtension(sseq.getClassesInDegree(30,2)[0],sseq.getClassesInDegree(33,4)[0]).setColor("brown"); 
+    sseq.getClassesInDegree(30, 2)[0].edges[2].delete();
+    sseq.getClassesInDegree(58, 8)[0].edges[2].delete();
+    sseq
+      .addExtension(
+        sseq.getClassesInDegree(30, 2)[0],
+        sseq.getClassesInDegree(33, 4)[0],
+      )
+      .setColor("brown");
     new BasicDisplay("#main", sseq);
     return;
-}).catch(e => console.log(e));
+  })
+  .catch((e) => console.log(e));

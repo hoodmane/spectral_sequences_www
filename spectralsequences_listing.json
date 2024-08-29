@@ -71,22 +71,22 @@
   },
   {
     "name": "Slice SS $\\mathit{BP}^{((C_4\\!))}\\langle 1\\rangle$",
-    "js" : "BPC4-1",
-    "js-file" : "BPC4-1",
+    "js": "BPC4-1",
+    "js-file": "BPC4-1",
     "description": "The slice spectral sequence for the $C_4$ fixed points of $\\mathit{BP}^{((C_4\\!))}\\langle 1\\rangle$"
   },
   {
     "name": "Slice SS $\\mathit{BP}^{((C_4\\!))}\\langle 2\\rangle$",
-    "js" : "BPC4-2",
-    "js-file" : "BPC4-2-flat",
+    "js": "BPC4-2",
+    "js-file": "BPC4-2-flat",
     "description": "The slice spectral sequence for the $C_4$ fixed points of $\\mathit{BP}^{((C_4\\!))}\\langle 2\\rangle$"
   },
   {
     "name": "Slice SS $\\mathit{BP}^{((C_8\\!))}\\langle 1\\rangle$",
-    "js" : "BPC8-1",
-    "js-file" : "BPC8-1-flat",
+    "js": "BPC8-1",
+    "js-file": "BPC8-1-flat",
     "description": "The slice spectral sequence for the $C_4$ fixed points of $\\mathit{BP}^{((C_8\\!))}\\langle 1\\rangle$"
-  },    
+  },
   {
     "name": "ASS $\\mathit{tm\\kern-0.05emf}$",
     "url": "tmf",

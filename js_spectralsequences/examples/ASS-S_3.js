@@ -4,28 +4,31 @@
 const path = import.meta.url.split("/");
 path.pop();
 path.pop();
-path.push("json")
-path.push("ASS-S_3.json")
+path.push("json");
+path.push("ASS-S_3.json");
 const toLoad = path.join("/");
 console.log(toLoad);
-
 
 const sseq = await Sseq.loadFromServer(toLoad);
 sseq._getXOffset = tools.fixed_tower_xOffset.bind(sseq);
 sseq._getYOffset = (n) => n.c.y_offset || 0;
 
 for (let sl of sseq.getStructlines()) {
-    switch (sl.mult) {
-        case "a_0":
-        case "h_0":
-            continue;
-        case "b":
-        case "v_1":
-            sl._drawOnPageQ = pageRange => pageRange[0] > 2 && Structline.prototype._drawOnPageQ.call(sl, pageRange);
-            break;
-        default:
-            sl._drawOnPageQ = pageRange => pageRange[0] === infinity && Structline.prototype._drawOnPageQ.call(sl, pageRange);
-    }
+  switch (sl.mult) {
+    case "a_0":
+    case "h_0":
+      continue;
+    case "b":
+    case "v_1":
+      sl._drawOnPageQ = (pageRange) =>
+        pageRange[0] > 2 &&
+        Structline.prototype._drawOnPageQ.call(sl, pageRange);
+      break;
+    default:
+      sl._drawOnPageQ = (pageRange) =>
+        pageRange[0] === infinity &&
+        Structline.prototype._drawOnPageQ.call(sl, pageRange);
+  }
 }
 
 new BasicDisplay("#main", sseq);
