@@ -1,5 +1,6 @@
-url = new URL(document.location);
-jsFile = url.searchParams.get("sseq");
+"use strict";
+const url = new URL(document.location);
+const jsFile = url.searchParams.get("sseq");
 function addLoadingMessage(message) {
   let msg_div = document.getElementById("loading");
   if (msg_div == null) {
@@ -27,7 +28,7 @@ function delayedSetStatus(html, delay) {
   window.status_div_timer = setTimeout(() => setStatus(html), delay);
 }
 
-macros = {
+const macros = {
   "\\toda": ["\\langle #1\\rangle", 1],
   "\\tmf": "\\mathit{tmf}",
   "\\HF": "H\\F",
@@ -40,7 +41,7 @@ macros = {
 };
 
 function katexMathInDelims(string) {
-  html_list = string.split(/(?:\\\[)|(?:\\\()|(?:\\\))|(?:\\\])|(?:\$)/);
+  const html_list = string.split(/(?:\\\[)|(?:\\\()|(?:\\\))|(?:\\\])|(?:\$)/);
   for (let i = 1; i < html_list.length; i += 2) {
     html_list[i] = katex.renderToString(html_list[i], { macros: macros });
   }
