@@ -14,18 +14,18 @@ globalThis.addLoadingMessage = function (message) {
     msg_div.innerHTML += `<p>${message}</p>`;
   }
   console.log(message);
-}
+};
 
-globalThis.setStatus = function(html) {
+globalThis.setStatus = function (html) {
   if (window.status_div_timer) {
     clearTimeout(window.status_div_timer);
   }
   document.getElementById("status").innerHTML = html;
-}
+};
 
-globalThis.delayedSetStatus = function(html, delay) {
+globalThis.delayedSetStatus = function (html, delay) {
   window.status_div_timer = setTimeout(() => setStatus(html), delay);
-}
+};
 
 const macros = {
   "\\toda": ["\\langle #1\\rangle", 1],

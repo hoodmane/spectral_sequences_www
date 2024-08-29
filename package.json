@@ -7,6 +7,6 @@
   },
   "devDependencies": {
     "esbuild": "^0.23.1",
-    "spectral-sequences": "github:hoodmane/js_spectralsequences#9d1e8db2d9161d09e65d2380a64a7f7368cb3e5b"
+    "spectral-sequences": "github:hoodmane/js_spectralsequences#a23fcc215815f8d96feb104622dee7f6c56f1e07"
   }
 }

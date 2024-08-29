@@ -10,6 +10,12 @@ path.push("json");
 path.push("ASS-S_2.json");
 const toLoad = path.join("/");
 
+setLatexMacros({
+  "\\kappabar": "\\overline{\\kappa}",
+  "\\sigmabar": "\\overline{\\sigma}",
+  "\\toda": "\\langle #1 \\rangle",
+});
+
 Sseq.loadFromServer(toLoad)
   .catch((error) => console.log(error))
   .then((sseq) => {
