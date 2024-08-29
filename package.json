@@ -3,10 +3,11 @@
   "private": "true",
   "scripts": {
     "postinstall": "npm --prefix node_modules/spectral-sequences i",
-    "build": "esbuild src/index.mjs --bundle --format=esm --outfile=public/bundle.mjs --minify"
+    "build": "esbuild src/index.mjs --bundle --format=esm --outfile=public/bundle.mjs --minify",
+    "dev": "esbuild src/index.mjs --bundle --format=esm --outfile=public/bundle.mjs --sourcemap"
   },
   "devDependencies": {
     "esbuild": "^0.23.1",
-    "spectral-sequences": "github:hoodmane/js_spectralsequences#a23fcc215815f8d96feb104622dee7f6c56f1e07"
+    "spectral-sequences": "github:hoodmane/js_spectralsequences#9d1e8db2d9161d09e65d2380a64a7f7368cb3e5b"
   }
 }
