@@ -1,5 +1,6 @@
 // Name: HFPSS $KO$
 // Description: The homotopy fixed point spectral sequence for $KO$.
+import { Sseq, BasicDisplay, Node, Shapes } from "sseq";
 
 const sseq = new Sseq();
 window.sseq = sseq;

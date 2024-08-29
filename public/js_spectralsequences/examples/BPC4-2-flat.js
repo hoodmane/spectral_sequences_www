@@ -1,6 +1,7 @@
 "use strict";
 // Name: Slice SS $BP^{((C_8))}\langle 1\rangle$
 // Description: The slice spectral sequence for the $C_8$ fixed points of $BP^{((C_8))}\langle 1\rangle$ (computation in progress).
+import { Node, Shapes, IO, StringifyingMap, Sseq, BasicDisplay } from "sseq";
 
 let VERSION = 0;
 let sseq_name = "BPC4-2";
@@ -12,7 +13,6 @@ path.pop();
 path.push("json");
 path.push(`${sseq_filename}.json`);
 const toLoad = path.join("/");
-console.log(toLoad);
 
 let t0 = performance.now();
 let tp5 = t0;

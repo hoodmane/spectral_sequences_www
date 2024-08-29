@@ -1,5 +1,6 @@
 // Name: ANSS $S_3$
 // Description: The Adams Novikov spectral sequence for $p=3$.
+import { Sseq, BasicDisplay } from "sseq";
 
 const sseq = new Sseq();
 

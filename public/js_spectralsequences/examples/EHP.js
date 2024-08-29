@@ -1,5 +1,6 @@
 // Name: EHP
 // Description: EHP Spectral Sequence for $p=2$. This is based on a combination of output from Strickland's mathematica program and from Mark Behren's tables.
+import { Sseq, BasicDisplay, tools } from "sseq";
 
 const path = import.meta.url.split("/");
 path.pop();

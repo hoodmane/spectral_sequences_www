@@ -1,5 +1,6 @@
 // Name: HFPSS $EO(3,1)$
 // Description: The homotopy fixed point spectral sequence for $E_2^{hC_3 \rtimes C_{4}}$ for $p=3$.
+import { Sseq, BasicDisplay, Node, Shapes, mod } from "sseq";
 
 const sseq = new Sseq();
 

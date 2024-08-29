@@ -42,18 +42,16 @@ const macros = {
 function katexMathInDelims(string) {
   const html_list = string.split(/(?:\\\[)|(?:\\\()|(?:\\\))|(?:\\\])|(?:\$)/);
   for (let i = 1; i < html_list.length; i += 2) {
-    html_list[i] = katex.renderToString(html_list[i], { macros: macros });
+    html_list[i] = katex.renderToString(html_list[i], { macros });
   }
   return html_list.join("");
 }
 
-const listingRequest = await fetch("spectralsequences_listing.json");
-const example_list = await listingRequest.json();
-
 if (jsFile) {
-  Object.assign(globalThis, await import("./bundle.mjs"));
   await import(`./js_spectralsequences/examples/${jsFile}.js`);
 } else {
+  const listingRequest = await fetch("spectralsequences_listing.json");
+  const example_list = await listingRequest.json();
   document.querySelector("#main").style.display = "none";
   document.body.id = "spectral_sequences";
   document.documentElement.style.overflow = "";
