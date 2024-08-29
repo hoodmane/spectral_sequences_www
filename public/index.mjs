@@ -62,7 +62,6 @@ if (jsFile) {
   document.body.appendChild(table);
   table.style.marginBottom = "100px";
   table.style.marginRight = "40px";
-  console.log(example_list);
   example_list.sort(function (a, b) {
     return a["name"] > b["name"] ? 1 : b["name"] > a["name"] ? -1 : 0;
   });
@@ -73,7 +72,6 @@ if (jsFile) {
   table.appendChild(colgroup);
   let n = -1;
   for (let example of example_list) {
-    console.log(example);
     n++;
     let tr = document.createElement("tr");
     tr.style.marginBottom = "20pt";
